@@ -19,8 +19,6 @@ public class UserCfServlet extends HttpServlet {
         User user = new User();
         user.setName((String) req.getParameter("name"));
         user.setPassword((String) req.getParameter("pwd"));
-        user.setPhone((String) req.getParameter("ph"));
-        user.setSex(Integer.parseInt((String) req.getParameter("sex")));
 
         Userimpl ui = new Userimpl();
         boolean ref = ui.UserLogin(user);
