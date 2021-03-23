@@ -37,7 +37,7 @@ public class DBConnect{
 
         try {
             Class.forName(DATABASEDRIVER);
-            this.con= (Connection) DriverManager.getConnection(DBURL, USER,PASSWORD);
+            this.con= (Connection) DriverManager.getConnection(DBURL, USER, PASSWORD);
         } catch (Exception e) {
             e.printStackTrace();
         }

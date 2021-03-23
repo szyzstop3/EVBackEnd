@@ -7,6 +7,7 @@ import vo.User;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Userimpl implements UserDAO {
@@ -31,6 +32,37 @@ public class Userimpl implements UserDAO {
                 }
                 DBC.close();
         return true;
+    }
+
+    @Override
+    public boolean UserLogin(User user) {
+        boolean flag =false;
+        String sql = "select * from user where name=?";
+        PreparedStatement pstmt = null ;
+        DBConnect dbc = null;
+        try{
+
+            dbc = new DBConnect() ;
+            pstmt = dbc.getConnection().prepareStatement(sql) ;
+            pstmt.setString(1,user.getName()) ;
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                if(rs.getString("password").equals(user.getPassword())){
+                    flag = true;
+                }
+            }
+            rs.close() ;
+            pstmt.close() ;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally{
+
+            dbc.close() ;
+        }
+        return flag;
     }
 
 }
