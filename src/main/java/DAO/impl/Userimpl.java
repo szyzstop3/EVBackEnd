@@ -65,4 +65,35 @@ public class Userimpl implements UserDAO {
         return flag;
     }
 
+    @Override
+    public boolean ExistUser(User user) {
+        boolean ex = true;
+        String sql = "select * from user where name=?";
+        DBConnect dbc = null;
+        PreparedStatement pstmt = null ;
+
+        try {
+            dbc = new DBConnect() ;
+            pstmt = dbc.getConnection().prepareStatement(sql) ;
+            pstmt.setString(1,user.getName()) ;
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                    //该用户名已经被注册！
+                    ex = true;
+                } else{
+                    ex = false;
+                }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }finally{
+            dbc.close() ;
+        }
+
+        return ex;
+    }
+
 }

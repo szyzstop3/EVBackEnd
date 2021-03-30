@@ -15,9 +15,11 @@
 /*    background-color: yellow;*/
 /*}*/
 
+
+
 .form{
-    position: absolute;
-    left: 40%;
-    top: 40%;
+    float: left;
+    height: 200px;
+    width: 200px;
     border: 1px solid black;
 }
