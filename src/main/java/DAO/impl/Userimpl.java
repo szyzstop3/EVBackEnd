@@ -96,4 +96,35 @@ public class Userimpl implements UserDAO {
         return ex;
     }
 
+    @Override
+    public String GetUserid(User user) {
+        String string = "null";
+
+        String sql = "select * from user where name=?";
+        PreparedStatement pstmt = null ;
+        DBConnect dbc = null;
+        try{
+
+            dbc = new DBConnect() ;
+            pstmt = dbc.getConnection().prepareStatement(sql) ;
+            pstmt.setString(1,user.getName()) ;
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                string = rs.getString("userid");
+            }
+
+            rs.close() ;
+            pstmt.close() ;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally{
+
+            dbc.close() ;
+        }
+        return string;
+    }
+
 }
