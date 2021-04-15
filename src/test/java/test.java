@@ -1,8 +1,11 @@
 import DAO.impl.Userimpl;
+import com.alibaba.fastjson.JSONObject;
 import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import org.junit.jupiter.api.Test;
 import vo.User;
 
+import javax.json.Json;
+import javax.json.JsonObject;
 import java.util.Random;
 
 
@@ -12,7 +15,14 @@ public class test {
 //            int[] a = new int[]{2,1,5,6,2,3};
 //
 //        System.out.println(rectangle(a));
-        System.out.println(getRandomString(20));
+//        System.out.println(getRandomString(20));
+
+
+        JSONObject j1 = new JSONObject();
+        j1.put("a","b");
+
+        JSONObject jsonObject = JSONObject.parseObject(j1.toString());
+        System.out.println(jsonObject.getString("a"));
 
     }
 

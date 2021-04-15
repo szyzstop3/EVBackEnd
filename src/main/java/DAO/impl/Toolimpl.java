@@ -1,6 +1,7 @@
 package DAO.impl;
 
 import DAO.ToolDAO;
+import com.alibaba.fastjson.JSONObject;
 import db.DBConnect;
 import vo.Charger;
 import vo.Comment;
@@ -20,6 +21,7 @@ public class Toolimpl implements ToolDAO {
         PreparedStatement pstmt = null ;
         DBConnect dbc = null;
 
+        //CSA为001001的二维码无需检验
         if(charger.getCSA().equals("001001")){
             return true;
         }else {
@@ -56,8 +58,63 @@ public class Toolimpl implements ToolDAO {
         }
 
     @Override
-    public boolean addComment(Comment comment) {
-        return false;
+    public String getCharger(Charger charger) {
+        JSONObject jsonObject = new JSONObject();
+        String sql = "select * from charger where chargerid=?";
+        PreparedStatement pstmt = null ;
+        DBConnect dbc = null;
+        try{
+
+            dbc = new DBConnect() ;
+            pstmt = dbc.getConnection().prepareStatement(sql) ;
+            pstmt.setString(1,""+charger.getChargerid()) ;
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                jsonObject.put("chargername",rs.getString("chargername"));
+                jsonObject.put("brand",rs.getString("brand"));
+                jsonObject.put("longitude",rs.getString("longitude"));
+                jsonObject.put("latitude",rs.getString("latitude"));
+                jsonObject.put("state",rs.getString("state"));
+            }
+            rs.close() ;
+            pstmt.close() ;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally{
+
+            dbc.close() ;
+        }
+        return jsonObject.toString();
+    }
+
+    @Override
+    public void addComment(Comment comment) {
+        //INSERT INTO `evcharger`.`comments` (`userid`,`chargerid`,`comment`,`stars`,`pay`,`reduction`) VALUES (5,1,'的方式',5.0,67.0,15.0);
+        String sql = "INSERT INTO `evcharger`.`comments` (`userid`,`chargerid`,`comment`,`stars`,`pay`,`reduction`) VALUES (?,?,?,?,?,?)";
+        PreparedStatement pstmt = null ;
+        DBConnect dbc = null;
+        try{
+
+            dbc = new DBConnect() ;
+            pstmt = dbc.getConnection().prepareStatement(sql) ;
+            pstmt.setString(1,""+comment.getUserid());
+            pstmt.setString(2,""+comment.getChargerid());
+            pstmt.setString(3,""+comment.getComment());
+            pstmt.setString(4,""+comment.getStars());
+            pstmt.setString(5,""+comment.getPay());
+            pstmt.setString(6,""+comment.getReduction());
+            pstmt.executeUpdate();
+            pstmt.close() ;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally{
+            dbc.close() ;
+        }
     }
 
     //生成随机字符串
