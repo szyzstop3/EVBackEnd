@@ -93,7 +93,7 @@ public class Toolimpl implements ToolDAO {
     @Override
     public void addComment(Comment comment) {
         //INSERT INTO `evcharger`.`comments` (`userid`,`chargerid`,`comment`,`stars`,`pay`,`reduction`) VALUES (5,1,'的方式',5.0,67.0,15.0);
-        String sql = "INSERT INTO `evcharger`.`comments` (`userid`,`chargerid`,`comment`,`stars`,`pay`,`reduction`) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO `evcharger`.`comments` (`userid`,`chargerid`,`comment`,`stars`,`pay`,`reduction`,`payoption`) VALUES (?,?,?,?,?,?,?)";
         PreparedStatement pstmt = null ;
         DBConnect dbc = null;
         try{
@@ -106,6 +106,7 @@ public class Toolimpl implements ToolDAO {
             pstmt.setString(4,""+comment.getStars());
             pstmt.setString(5,""+comment.getPay());
             pstmt.setString(6,""+comment.getReduction());
+            pstmt.setString(7,""+comment.getPayoption());
             pstmt.executeUpdate();
             pstmt.close() ;
         }catch (SQLException e){

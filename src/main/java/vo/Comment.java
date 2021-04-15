@@ -9,6 +9,15 @@ public class Comment {
     private String time;
     private float pay;
     private float reduction;
+    private String payoption;
+
+    public String getPayoption() {
+        return payoption;
+    }
+
+    public void setPayoption(String payoption) {
+        this.payoption = payoption;
+    }
 
     public int getCommentid() {
         return commentid;

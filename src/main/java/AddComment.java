@@ -22,6 +22,7 @@ public class AddComment extends HttpServlet {
         comment.setPay(Float.parseFloat(req.getParameter("pay")));
         comment.setStars(Float.parseFloat(req.getParameter("stars")));
         comment.setReduction(Float.parseFloat(req.getParameter("reduction")));
+        comment.setPayoption(req.getParameter("payoption"));
 
 
         Toolimpl toolimpl = new Toolimpl();
