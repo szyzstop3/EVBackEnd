@@ -1,7 +1,7 @@
 
 <html>
 <head>
-    <title>index</title>
+    <title>EV后台控制</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/index.css">
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -10,32 +10,49 @@
 <body>
 <!--    <div class="test1">-->
 <!--    </div>-->
-<div class="form">
-    <form action="myservlet" method="post">
-        name: <input type="text" id="name" name = "name" value="name" class="intest"><br>
-        password: <input type="text" id="pwd" name = "pwd" value="pwd" class="intest"><br>
-        phonen: <input type="text" id="ph" name = "ph" value="ph" class="intest"><br>
-        sex(0/1):<input type="text" id="sex" name = "sex" value="1" class="intest"><br>
-        <input type="submit" value="上传数据">
-    </form>
 
-</div>
-<div class="form">
-    <form action="usercf" method="post">
-        name: <input type="text" name = "name" value="name" class="intest"><br>
-        password: <input type="text" name = "pwd" value="pwd" class="intest"><br>
-        phonen: <input type="text" name = "ph" value="ph" class="intest"><br>
-        sex(0/1):<input type="text" name = "sex" value="1" class="intest"><br>
-        <input type="submit" value="用户登录">
-    </form>
+
+<div class="container">
+    <div class="item1 item">
+        <p>上传数据</p>
+        <form action="myservlet" method="post">
+            name: <input type="text" id="name" name = "name" value="name" class="intest"><br>
+            password: <input type="text" id="pwd" name = "pwd" value="pwd" class="intest"><br>
+            phonen: <input type="text" id="ph" name = "ph" value="ph" class="intest"><br>
+            sex(0/1):<input type="text" id="sex" name = "sex" value="1" class="intest"><br>
+            <input type="submit" value="上传数据">
+        </form>
+
+    </div>
+    <div class="item2 item">
+        <p>用户登录</p>
+        <form action="usercf" method="post">
+            name: <input type="text" name = "name" value="name" class="intest"><br>
+            password: <input type="text" name = "pwd" value="pwd" class="intest"><br>
+            phonen: <input type="text" name = "ph" value="ph" class="intest"><br>
+            sex(0/1):<input type="text" name = "sex" value="1" class="intest"><br>
+            <input type="submit" value="用户登录">
+        </form>
+    </div>
+
+    <div class="item3 item">
+        <p>用户名检测</p>
+        <form action="userex" method="post">
+            name: <input type="text" name = "name" value="name"><br>
+            <input type="submit" value="用户名检测">
+        </form>
+    </div>
+
+    <div class="item4 item">
+        <p>二维码检测</p>
+        <form action="validcharger" method="post">
+            chargerid: <input type="text" name = "chargerid" value="chargerid"><br>
+            csa: <input type="text" name = "csa" value="csa" class="intest"><br>
+            <input type="submit" value="二维码检测">
+        </form>
+    </div>
 </div>
 
-<div class="form">
-    <form action="userex" method="post">
-        name: <input type="text" name = "name" value="name" class="intest"><br>
-        <input type="submit" value="用户名检测">
-    </form>
-</div>
 
 
 </body>

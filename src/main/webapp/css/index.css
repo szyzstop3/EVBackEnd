@@ -17,9 +17,20 @@
 
 
 
-.form{
-    float: left;
-    height: 200px;
-    width: 200px;
-    border: 1px solid black;
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
+
+.item {
+    border: 20px solid black;
+    border-radius: 15px;
+}
+
+p{
+    text-align: center;
+}
+
+
